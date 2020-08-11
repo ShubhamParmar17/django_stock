@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if ticker %}
+	{{ ticker }}
+{% endif %}	
+
+{% if data1 and data2 and data3 %}
+	{% if data1 == "Error..." or data2 == "Error..." or data3 == "Error..."   %}
+		<p>Please enter a valid Ticker Symbol.</p>
+	{% else %}	
+		
+		<div class="card text-white bg-dark mb-3" style="max-width: 550px;">
+  			<div class="row no-gutters">
+    			<div class="col-md-4"><br>
+      				<img src="{{ data2.url }}" class="  mx-auto d-block" alt="ticker symbol">
+    			</div>
+    			<div class="col-md-8">
+      			<div class="card-body">
+        			<h5 class="card-title">{{ data1.companyName }}</h5>
+        			<h6 class="card-subtitle mb-2 text-muted">{{ data1.primaryExchange }}</h6>
+        			<p class="card-text">
+                Latest Price : &nbsp;${{ data1.latestPrice }}<br>
+                Prev Close : &nbsp;${{ data1.previousClose }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                Mkt Cap : &nbsp;${{ data1.marketCap }}<br>
+                YTD Change : &nbsp;{{ data1.ytdChange }}<br>
+                52-wk High : &nbsp;${{ data1.week52High }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;52-wk Low : &nbsp;${{ data1.week52Low }}<br>
+              </p>
+
+        	    <a href="{{ data3.website }}" class="btn btn-primary">Visit</a>
+        			
+      			</div>
+    			</div>
+  			</div>
+		</div>
+
+
+	{% endif %}
+	
+{% endif %}
+
+{% endblock %}
+
